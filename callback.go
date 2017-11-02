@@ -1,4 +1,4 @@
 package statemachine
 
 // Callback ...
-type Callback func() error
+type Callback func(t interface{}) error
