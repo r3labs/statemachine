@@ -66,12 +66,13 @@ func (s *StateMachine) change(event string, t interface{}) error {
 	state := s.Transitions[event][s.State.GetState()]
 
 	for _, cb := range s.Callbacks[state] {
-		err := cb(t)
+		err := cb(state, t)
 		if err != nil {
 			return err
 		}
 	}
 
 	s.State.SetState(state)
+
 	return nil
 }
