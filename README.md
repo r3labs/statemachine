@@ -37,23 +37,23 @@ import (
 
 func main() {
     s := New("initializing")
-	sm := statemachine.New(s)
+    sm := statemachine.New(s)
 
     // Assign all transitions for a given event
-	sm.When("accept", statemachine.Transitions{"initializing": "accepted"})
-	sm.When("reject", statemachine.Transitions{"initializing": "rejected"})
-	sm.When("reset", statemachine.Transitions{"accepted": "initializing", "rejected": "initializing"})
+    sm.When("accept", statemachine.Transitions{"initializing": "accepted"})
+    sm.When("reject", statemachine.Transitions{"initializing": "rejected"})
+    sm.When("reset", statemachine.Transitions{"accepted": "initializing", "rejected": "initializing"})
 }
 ```
 
 Callbacks can be added for execution before transitioning to a state. Multiple callbacks for an event are supported. In the event of a callback failure, the transition will be halted
 ```go
     // Additional data can be passed into the callback via an interface
-	sm.On("accepted", func(state string, t interface{}) error {
+    sm.On("accepted", func(state string, t interface{}) error {
         // produces new state: accepted
-		fmt.Println("new state: " + state)   
+        fmt.Println("new state: " + state)   
 
-		return nil
+        return nil
 	})
 ```
 
