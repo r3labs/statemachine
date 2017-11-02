@@ -25,9 +25,9 @@ func (s *StateMachine) When(event string, t Transitions) {
 	s.Transitions[event] = t
 }
 
-// On : sets a callback for a given event
-func (s *StateMachine) On(event string, c Callback) {
-	s.Callbacks[event] = append(s.Callbacks[event], c)
+// On : sets a callback for a given state change
+func (s *StateMachine) On(state string, c Callback) {
+	s.Callbacks[state] = append(s.Callbacks[state], c)
 }
 
 // Trigger : trigger a state change
